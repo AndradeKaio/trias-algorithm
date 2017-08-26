@@ -32,6 +32,10 @@ import de.unikassel.cs.kde.trias.util.ConfigurationException;
 import de.unikassel.cs.kde.trias.util.TriasCommandLineArgumentsConfigurator;
 import de.unikassel.cs.kde.trias.util.TriasConfigurator;
 import de.unikassel.cs.kde.trias.util.TriasPropertiesConfigurator;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+
 
 /**
  * 
@@ -45,7 +49,10 @@ public class TriasRunner {
 	private static final String PROPERTIES_FILE_NAME = "trias.properties";
 
 	public static void main(String[] args) throws IOException {
-		
+           
+//            OutputStream outputStream = new BufferedOutputStream(new FileOutputStream("./test"));
+//            System.exit(0);
+            
 		final Trias trias = new Trias();
 		TriasConfigurator config;
 
@@ -60,15 +67,15 @@ public class TriasRunner {
 				System.err.println("Could not find file '" + PROPERTIES_FILE_NAME + "' for configuration.");
 				System.exit(1);
 			}
-
+                        
 			final Properties prop = new Properties();
 			prop.load(resourceAsStream);
 			config = new TriasPropertiesConfigurator(prop);
 			
 		}
-		System.err.println(config.usage());
-		
-
+//		System.err.println(config.usage());
+//		
+//
 		/*
 		 * configure trias
 		 */

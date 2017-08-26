@@ -34,6 +34,7 @@ import de.unikassel.cs.kde.trias.model.TriConcept;
 
 /**
  * 
+ * @param <T>
  * @author:  rja
  * @version: $Id: TriNeighborHoodFinder.java,v 1.1 2009-04-23 06:53:15 rja Exp $
  * $Author: rja $

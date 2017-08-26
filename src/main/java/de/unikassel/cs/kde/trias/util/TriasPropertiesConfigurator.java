@@ -28,7 +28,6 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -110,11 +109,7 @@ public class TriasPropertiesConfigurator implements TriasConfigurator {
 		 */
 		InputStream inputStream = System.in;
 		if (props.containsKey(TRIAS_INPUT)) {
-			try {
-				inputStream = new BufferedInputStream(new FileInputStream(props.getProperty(TRIAS_INPUT)));
-			} catch (FileNotFoundException e) {
-				throw new ConfigurationException(e);
-			}
+			inputStream = new BufferedInputStream(TriasPropertiesConfigurator.class.getClassLoader().getResourceAsStream(props.getProperty(TRIAS_INPUT)));
 		}
 		/*
 		 * configure output
