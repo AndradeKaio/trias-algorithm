@@ -19,8 +19,8 @@ You need git, Java and Maven2 to download and compile the code. Then
 you can do:
 
 ```shell
-git clone git://github.com/rjoberon/bibsonomy-tools.git
-cd bibsonomy-tools
+git clone git@github.com:josuesasilva/trias-algorithm.git
+cd trias-algorithm
 mvn install 
 ```
 You can find the compiled JAR file in the `target` folder. 
