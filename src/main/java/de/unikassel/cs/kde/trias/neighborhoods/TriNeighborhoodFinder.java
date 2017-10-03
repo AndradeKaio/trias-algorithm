@@ -40,7 +40,7 @@ import de.unikassel.cs.kde.trias.model.TriConcept;
  * $Author: rja $
  * 
  */
-public class TriNeighborHoodFinder<T extends Comparable<T>> {
+public class TriNeighborhoodFinder<T extends Comparable<T>> {
 
 
 	public HashSet<HashSet<TriConcept<T>>> findNeighborhoods(final Set<GraphEdge<TriConcept<T>>> graph) {

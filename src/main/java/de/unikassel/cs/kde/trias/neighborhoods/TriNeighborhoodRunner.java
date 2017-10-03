@@ -172,7 +172,7 @@ public class TriNeighborhoodRunner {
 	 */
 	public HashSet<HashSet<TriConcept<String>>> computeNeighborhoods(final Graph<TriConcept<String>> graph) {
 		final TriNeighborhoodFinder<String> finder = new TriNeighborhoodFinder<String>();
-		final HashSet<HashSet<TriConcept<String>>> neighborhoods = finder.findNeighborhoods(graph);
+		final HashSet<HashSet<TriConcept<String>>> neighborhoods = finder.findNeighborhoods(graph.getEdges());
 		log.info("Found " + neighborhoods.size() + " neighborhoods");
 
 		int sum = 0;
