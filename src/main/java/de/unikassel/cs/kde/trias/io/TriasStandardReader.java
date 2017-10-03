@@ -25,7 +25,10 @@
 package de.unikassel.cs.kde.trias.io;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 
 import de.unikassel.cs.kde.trias.util.Dimension;
 
@@ -36,9 +39,10 @@ import de.unikassel.cs.kde.trias.util.Dimension;
 public class TriasStandardReader implements TriasReader {
 
 	private String delimiter = "\\s";
+	private String filePath;
 	private int numberOfItems;
 	private BufferedReader reader;
-	
+
 	public TriasStandardReader(final BufferedReader reader, int numberOfTriples, final String delimiter) {
 		super();
 		this.numberOfItems = numberOfTriples;
@@ -46,17 +50,50 @@ public class TriasStandardReader implements TriasReader {
 		this.reader = reader;
 	}
 
+	public TriasStandardReader(final String path, int numberOfTriples, final String delimiter) {
+		super();
+		this.numberOfItems = numberOfTriples;
+		this.delimiter = delimiter;
+		this.filePath = path;
+	}
+
 	public int[][] getItemlist() throws NumberFormatException, IOException {
+
 		int[][] utrListe = new int[numberOfItems][Dimension.noOfDimensions + 1];
 		int ctr = 0;
-		while (reader.ready()) {
-			String[] parts = reader.readLine().split(delimiter);
-			for (int dim = 0; dim < Dimension.noOfDimensions; dim++) {
-				utrListe[ctr][dim] = Integer.parseInt(parts[dim]);	
+
+		if (reader != null) {
+			while (reader.ready()) {
+				System.out.println("123");
+				System.out.println(reader.readLine());
+				String[] parts = reader.readLine().split(delimiter);
+				for (int dim = 0; dim < Dimension.noOfDimensions; dim++) {
+					utrListe[ctr][dim] = Integer.parseInt(parts[dim]);
+					System.out.println(parts[dim]);
+				}
+				ctr++;
 			}
-			ctr++;
+			reader.close();
+		} else if (filePath != null){
+			Scanner sc;
+			try {
+				sc = new Scanner(new File(filePath));
+				while (sc.hasNextLine()) {
+					String[] parts = sc.nextLine().split(" ");
+					for (int dim = 0; dim < Dimension.noOfDimensions; dim++) {
+						utrListe[ctr][dim] = Integer.parseInt(parts[dim]);
+						System.out.println(parts[dim]);
+					}
+					ctr++;
+				}
+
+				sc.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+
 		}
-		reader.close();
+
 		return utrListe;
 	}
 

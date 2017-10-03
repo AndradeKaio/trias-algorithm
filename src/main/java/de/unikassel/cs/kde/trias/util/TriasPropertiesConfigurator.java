@@ -148,7 +148,7 @@ public class TriasPropertiesConfigurator implements TriasConfigurator {
 					trias.setItemList(tripleReader.getItemlist());
 					trias.setTriConceptWriter(new TriasHoleWriter(new BufferedWriter(new OutputStreamWriter(outputStream, DEFAULT_CHARSET)), tripleReader.getInverseMapping()));
 				} else {
-					final TriasReader tripleReader = new TriasStandardReader(new BufferedReader (new InputStreamReader(inputStream, DEFAULT_CHARSET)), numberOfTriples, delimiter);
+					final TriasReader tripleReader = new TriasStandardReader(props.getProperty(TRIAS_INPUT), numberOfTriples, delimiter);
 					trias.setItemList(tripleReader.getItemlist());
 					trias.setTriConceptWriter(new TriasStandardWriter(new BufferedWriter(new OutputStreamWriter(outputStream, DEFAULT_CHARSET)), writeScores));
 				}
